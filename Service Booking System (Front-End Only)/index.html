@@ -1,0 +1,131 @@
+<!-- Project 6: Service Booking System (Front-End Only) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RT CAM Service Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background: white;
+      padding: 30px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #1f2937;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #111827;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book a Service</h2>
+    <form id="bookingForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="service">Service Type</label>
+      <select id="service" required>
+        <option value="">Select a service</option>
+        <option>Installation</option>
+        <option>Repair</option>
+        <option>Maintenance</option>
+      </select>
+
+      <label for="date">Select Date</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Select Time Slot</label>
+      <select id="time" required>
+        <option value="">Select a time</option>
+        <option>10:00 AM - 11:00 AM</option>
+        <option>11:30 AM - 12:30 PM</option>
+        <option>2:00 PM - 3:00 PM</option>
+        <option>4:00 PM - 5:00 PM</option>
+      </select>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+
+  <div class="modal" id="confirmationModal">
+    <div class="modal-content">
+      <h3>Booking Confirmed!</h3>
+      <p>Thank you for booking a service with RT CAM.</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("bookingForm");
+    const modal = document.getElementById("confirmationModal");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Basic validation check
+      if (
+        form.name.value &&
+        form.email.value &&
+        form.service.value &&
+        form.date.value &&
+        form.time.value
+      ) {
+        modal.style.display = "flex";
+        form.reset();
+      }
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
+<!-- End Project 6 -->
